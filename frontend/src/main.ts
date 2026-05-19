@@ -472,13 +472,6 @@ function buildApp(): void {
         for (const c of profile.certifications) {
           appendLine(`  · ${escapeHtml(c)}`, 'term-bullet')
         }
-        appendLine('<span class="term-key">Activities</span>', 'term-section')
-        for (const a of profile.activities) {
-          appendLine(
-            `<span class="term-accent">${escapeHtml(a.org)}</span>  <span class="term-dim">${escapeHtml(a.dates)}</span>`,
-          )
-          appendLine(`  ${escapeHtml(a.desc)}`, 'term-bullet')
-        }
         break
       }
       case 'experience':

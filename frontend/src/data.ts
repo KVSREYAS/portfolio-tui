@@ -67,13 +67,6 @@ export const profile = {
       url: 'https://github.com/KVSREYAS/DoodleGyaan',
     },
   ],
-  activities: [
-    {
-      org: 'TAM-VIT (The AI and ML Club), VIT',
-      dates: 'Sep 2022 – Present',
-      desc: 'Core Committee Member. Organized hackathons and workshops.',
-    },
-  ],
   skills: [
     ['Languages', 'Python · C++ · C · Java · JavaScript · SQL'],
     ['Tools/Tech', 'HTML · CSS · React.js · OpenCV · PyTorch · TensorFlow'],
@@ -137,7 +130,7 @@ export const helpSections: HelpSection[] = [
   {
     title: 'Professional',
     commands: [
-      { cmd: '/education', desc: 'Degree, certs & clubs' },
+      { cmd: '/education', desc: 'Degree & certifications' },
       { cmd: '/experience', desc: 'Internships & work' },
       { cmd: '/projects', desc: 'Personal projects' },
       { cmd: '/achievements', desc: 'Hackathons & awards' },
