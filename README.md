@@ -15,6 +15,17 @@ npm install
 npm run dev
 ```
 
+For production (frontend and backend on different hosts), set the backend URL before build:
+
+```powershell
+Copy-Item .env.example .env
+# Edit .env: VITE_API_URL=https://your-backend.up.railway.app
+npm run build
+npm run start
+```
+
+On Railway, add `VITE_API_URL` to the **frontend** service variables (build-time). Set `FRONTEND_URL` on the **backend** to your frontend’s public URL for CORS.
+
 ## Backend
 
 ```powershell

@@ -55,15 +55,32 @@ def parse_history(raw_history: object) -> list[HumanMessage | AIMessage]:
     return messages
 
 
+def get_allowed_origins() -> list[str]:
+    """Origins that may call /api/* (browser CORS). Includes local dev + FRONTEND_URL."""
+    origins: list[str] = []
+    seen: set[str] = set()
+
+    def add(origin: str) -> None:
+        o = origin.strip().rstrip("/")
+        if o and o not in seen:
+            seen.add(o)
+            origins.append(o)
+
+    for part in os.getenv(
+        "ALLOWED_ORIGINS",
+        "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000,http://localhost:4173",
+    ).split(","):
+        add(part)
+
+    add(os.getenv("FRONTEND_URL", ""))
+
+    return origins
+
+
 def create_app() -> Flask:
     app = Flask(__name__)
 
-    allowed_origins = [
-        origin.strip()
-        for origin in os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
-        if origin.strip()
-    ]
-    CORS(app, resources={r"/api/*": {"origins": allowed_origins}})
+    CORS(app, resources={r"/api/*": {"origins": get_allowed_origins()}})
 
     @app.get("/api/health")
     def health() -> tuple[dict[str, str], int]:

@@ -1,4 +1,5 @@
 import './style.css'
+import { apiUrl } from './config'
 import { helpSections, profile } from './data'
 import {
   applyLetterGuess,
@@ -400,7 +401,7 @@ function buildApp(): void {
     out.scrollTop = out.scrollHeight
 
     try {
-      const res = await fetch('/api/chat', {
+      const res = await fetch(apiUrl('/api/chat'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
